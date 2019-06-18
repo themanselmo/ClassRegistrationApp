@@ -16,6 +16,13 @@ public class AccountMap<K,V> {
         pc = new PasswordChecker();
     }
 
+    public boolean login(String username, String password){
+        if(myMap.containsKey(username) && findByKey(username).getPassword().equals(password)){
+            return true;
+        }
+        return false;
+    }
+
     public void insert(Account account) {
         if(!myMap.containsKey(account.getUserName())) {
             myMap.put(account.getUserName(), account);
@@ -30,14 +37,6 @@ public class AccountMap<K,V> {
         } else {
             System.out.println("Account doesnt exist");
             return null;
-        }
-    }
-
-    public boolean contains(String key) {
-        if(myMap.containsKey(key)) {
-            return true;
-        } else {
-            return false;
         }
     }
 
